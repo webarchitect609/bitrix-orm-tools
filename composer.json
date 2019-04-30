@@ -1,0 +1,21 @@
+{
+  "name": "webarchitect609/bitrix-orm-tools",
+  "description": "Bitrix orm table class tools.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sergey Gripinskiy",
+      "email": "web-architect@mail.ru"
+    }
+  ],
+  "require": {
+    "php": "^7.0",
+    "webarchitect609/bitrix-cache": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "WebArch\\BitrixOrmTools\\": "src/main"
+    }
+  }
+}
