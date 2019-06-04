@@ -114,8 +114,8 @@ abstract class DynamicSinglePropertiesTable extends DataManager
      */
     protected static function findConverter(array $propertyFields): PropertyToFieldConverter
     {
-        $type = $propertyFields['PROPERTY_TYPE'];
-        $userType = $propertyFields['USER_TYPE'];
+        $type = trim($propertyFields['PROPERTY_TYPE']);
+        $userType = trim($propertyFields['USER_TYPE']);
 
         foreach (static::getConverterList() as $converter) {
             if (
