@@ -33,5 +33,4 @@ class SkuConverter extends PropertyToFieldConverter
             self::getDefaultFieldParameters($propertyFields)
         );
     }
-
 }

@@ -6,16 +6,41 @@
   "authors": [
     {
       "name": "Sergey Gripinskiy",
-      "email": "web-architect@mail.ru"
+      "email": "web-architect@mail.ru",
+      "role": "Creator"
     }
   ],
   "require": {
-    "php": "^7.0",
-    "webarchitect609/bitrix-cache": "^1.0"
+    "php": "^7.2",
+    "webarchitect609/bitrix-cache": "^1.4 || ^2.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "roave/security-advisories": "dev-master",
+    "phpunit/phpunit": "^8.5",
+    "phpstan/phpstan": "^0.12.25",
+    "webarchitect609/bitrix-taxidermist": "^0.1.2"
   },
   "autoload": {
     "psr-4": {
       "WebArch\\BitrixOrmTools\\": "src/main"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WebArch\\BitrixOrmTools\\Test\\": "src/test"
+    }
+  },
+  "scripts": {
+    "check:analyse": "vendor/bin/phpstan analyse --ansi --no-progress",
+    "check:code-style": "vendor/bin/php-cs-fixer fix --ansi --dry-run --diff",
+    "check:security": "@composer update --dry-run roave/security-advisories",
+    "check:test": "vendor/bin/phpunit"
+  },
+  "scripts-descriptions": {
+    "check:analyse": "Static code anaysis via PHPStan",
+    "check:code-style": "Check the code style.",
+    "check:security": "Manual dependencies security check via roave/security-advisories.",
+    "check:test": "Run all UnitTests."
   }
 }

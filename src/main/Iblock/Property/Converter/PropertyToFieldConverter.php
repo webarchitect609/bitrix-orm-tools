@@ -24,7 +24,7 @@ abstract class PropertyToFieldConverter
     /**
      * Возвращает объект описания поля таблицы.
      *
-     * @param array $propertyFields
+     * @param array<string, mixed> $propertyFields
      *
      * @throws SystemException
      * @return Field
@@ -32,9 +32,9 @@ abstract class PropertyToFieldConverter
     abstract public function createField(array $propertyFields): Field;
 
     /**
-     * @param array $propertyFields
+     * @param array<string, mixed> $propertyFields
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getDefaultFieldParameters(array $propertyFields): array
     {
@@ -50,5 +50,4 @@ abstract class PropertyToFieldConverter
 
         return $parameters;
     }
-
 }

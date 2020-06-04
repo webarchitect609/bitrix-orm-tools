@@ -33,5 +33,4 @@ class YesNoTypeConverter extends PropertyToFieldConverter
             self::getDefaultFieldParameters($propertyFields)
         );
     }
-
 }

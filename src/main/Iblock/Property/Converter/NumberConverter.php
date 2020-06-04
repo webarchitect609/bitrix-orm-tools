@@ -33,5 +33,4 @@ class NumberConverter extends PropertyToFieldConverter
             self::getDefaultFieldParameters($propertyFields)
         );
     }
-
 }

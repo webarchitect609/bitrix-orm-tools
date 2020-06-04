@@ -3,7 +3,6 @@
 namespace WebArch\BitrixOrmTools\Iblock\Property\Converter;
 
 use Bitrix\Main\ORM\Fields\Field;
-use Bitrix\Main\ORM\Fields\IntegerField;
 use Bitrix\Main\ORM\Fields\TextField;
 
 class StringConverter extends PropertyToFieldConverter
@@ -34,5 +33,4 @@ class StringConverter extends PropertyToFieldConverter
             self::getDefaultFieldParameters($propertyFields)
         );
     }
-
 }

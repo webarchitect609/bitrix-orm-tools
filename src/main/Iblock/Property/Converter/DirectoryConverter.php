@@ -33,5 +33,4 @@ class DirectoryConverter extends PropertyToFieldConverter
             self::getDefaultFieldParameters($propertyFields)
         );
     }
-
 }
