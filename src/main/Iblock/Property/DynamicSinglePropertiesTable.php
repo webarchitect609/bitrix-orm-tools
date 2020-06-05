@@ -29,10 +29,7 @@ abstract class DynamicSinglePropertiesTable extends DataManager
 {
     protected const TABLE_PREFIX = 'b_iblock_element_prop_s';
 
-    /**
-     * @var null|string
-     */
-    protected static $tableName;
+    private const CACHE_PATH = '/WebArch/BitrixOrmTools/Iblock/Property/DynamicSinglePropertiesTable';
 
     /**
      * @var array<string, bool>
@@ -51,11 +48,7 @@ abstract class DynamicSinglePropertiesTable extends DataManager
      */
     public static function getTableName()
     {
-        if (is_null(static::$tableName)) {
-            static::$tableName = self::TABLE_PREFIX . static::getIblockId();
-        }
-
-        return static::$tableName;
+        return self::TABLE_PREFIX . static::getIblockId();
     }
 
     /**
@@ -65,7 +58,13 @@ abstract class DynamicSinglePropertiesTable extends DataManager
     public static function getMap()
     {
         return Cache::create()
-                    ->setPath('/WebArch/BitrixOrmTools/Iblock/Property/DynamicSinglePropertiesTable')
+                    ->setPath(self::CACHE_PATH)
+                    ->setKey(
+                        sprintf(
+                            'getMap_iblock-%d',
+                            static::getIblockId()
+                        )
+                    )
                     ->callback(
                         function () {
                             return static::doGetMap();
