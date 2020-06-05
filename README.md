@@ -56,7 +56,8 @@ ElementTable::query()
                 new ReferenceField(
                     'NEWS_PROP',
                     NewsSinglePropTable::class,
-                    Join::on('this.ID', 'ref.IBLOCK_ELEMENT_ID')
+                    Join::on('this.ID', 'ref.IBLOCK_ELEMENT_ID'),
+                    ['join_type' => 'INNER']
                 )
             );
 ```
