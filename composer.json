@@ -12,14 +12,15 @@
   ],
   "require": {
     "php": "^7.2",
-    "webarchitect609/bitrix-cache": "^1.4 || ^2.0"
+    "webarchitect609/bitrix-cache": "^1.6 || ^2.0",
+    "webarchitect609/bitrix-user-type": "^0.7"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.16",
-    "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "^8.5",
     "phpstan/phpstan": "^0.12.25",
-    "webarchitect609/bitrix-taxidermist": "^0.1.2"
+    "phpunit/phpunit": "^8.5",
+    "roave/security-advisories": "dev-master",
+    "webarchitect609/bitrix-taxidermist": "^0.1"
   },
   "autoload": {
     "psr-4": {
@@ -32,15 +33,25 @@
     }
   },
   "scripts": {
+    "check:all": [
+      "@check:code-style",
+      "@check:analyse",
+      "@check:test",
+      "@check:security"
+    ],
     "check:analyse": "vendor/bin/phpstan analyse --ansi --no-progress",
     "check:code-style": "vendor/bin/php-cs-fixer fix --ansi --dry-run --diff",
-    "check:security": "@composer update --dry-run roave/security-advisories",
-    "check:test": "vendor/bin/phpunit"
+    "check:security": "@composer update --no-suggest --no-interaction --dry-run roave/security-advisories",
+    "check:test": "vendor/bin/phpunit --colors=always"
   },
   "scripts-descriptions": {
-    "check:analyse": "Static code anaysis via PHPStan",
+    "check:all": "Perform all the checks at once: code-style, static code analysis, unit tests and security.",
+    "check:analyse": "Static code analysis via PHPStan",
     "check:code-style": "Check the code style.",
     "check:security": "Manual dependencies security check via roave/security-advisories.",
-    "check:test": "Run all UnitTests."
+    "check:test": "Run all unit tests."
+  },
+  "config": {
+    "sort-packages": true
   }
 }
