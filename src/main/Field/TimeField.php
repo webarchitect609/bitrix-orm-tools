@@ -80,11 +80,7 @@ class TimeField extends ScalarField
     public function postInitialize()
     {
         $this->tryGetUserField();
-        if (!is_array($this->userField)) {
-            return null;
-        }
-
-        if (!array_key_exists('SETTINGS', $this->userField) || !is_array($this->userField['SETTINGS'])) {
+        if (!$this->userFieldHasSettings()) {
             return null;
         }
 

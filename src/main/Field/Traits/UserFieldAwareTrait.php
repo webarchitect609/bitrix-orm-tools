@@ -67,6 +67,24 @@ trait UserFieldAwareTrait
     }
 
     /**
+     * @return bool
+     */
+    protected function userFieldIsFound(): bool
+    {
+        return is_array($this->userField);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function userFieldHasSettings(): bool
+    {
+        return $this->userFieldIsFound()
+            && array_key_exists('SETTINGS', $this->userField)
+            && is_array($this->userField['SETTINGS']);
+    }
+
+    /**
      * @return Entity
      */
     abstract public function getEntity();
