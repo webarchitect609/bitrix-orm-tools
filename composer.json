@@ -1,6 +1,7 @@
 {
   "name": "webarchitect609/bitrix-orm-tools",
   "description": "Bitrix orm table class tools.",
+  "version": "2.2.0",
   "type": "library",
   "license": "MIT",
   "authors": [

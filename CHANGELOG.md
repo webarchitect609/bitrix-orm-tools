@@ -1,6 +1,17 @@
 Changelog
 =========
 
+2.2.0
+-----
+
+### Добавлено:
+- Новый тип поля `GeometryField` с поддержкой работы в форматах Well-Known Binary, Well-Known Text, GeoJSON и
+    Internal(MySQL internal geometry format);
+- Хэлпер `\WebArch\BitrixOrmTools\SqlExpression\MySQL\SqlExpression` и его специфическая часть
+    `\WebArch\BitrixOrmTools\SqlExpression\MySQL\Spatial` для работы со spatial функциями; 
+- Метод `PlaceholderTypeTrait::getPlaceholderAndValue()` для автоматического определения типа placeholder и его
+    значения по любому из поддерживаемых в `\Bitrix\Main\DB\SqlExpression::execPlaceholders()` типов данных.
+
 2.1.0
 -----
 

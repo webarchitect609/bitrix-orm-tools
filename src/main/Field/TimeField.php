@@ -80,14 +80,12 @@ class TimeField extends ScalarField
     public function postInitialize()
     {
         $this->tryGetUserField();
-        if (!is_array($this->userField)) {
+        if (!$this->userFieldHasSettings()) {
             return null;
         }
-
-        if (!array_key_exists('SETTINGS', $this->userField) || !is_array($this->userField['SETTINGS'])) {
-            return null;
-        }
-
+        /**
+         * @phpstan-ignore-next-line Метод userFieldHasSettings() уже проверил наличие ключа 'SETTINGS'.
+         */
         $settings = $this->userField['SETTINGS'];
         if (
             array_key_exists(TimeType::SETTING_REQUIRED, $settings)
