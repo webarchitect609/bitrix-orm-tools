@@ -1,6 +1,13 @@
 Changelog
 =========
 
+2.2.1
+-----
+
+### Исправлено:
+- Исправлено значение константы `\WebArch\BitrixOrmTools\SqlExpression\MySQL\Spatial::MAX_DEC_DIGITS`, которая должна
+    быть 2^31 - 1, хотя в документации MySQL указано 2^32 - 1 
+
 2.2.0
 -----
 

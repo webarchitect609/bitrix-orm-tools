@@ -13,9 +13,9 @@ class Spatial
     use PlaceholderTypeTrait;
 
     /**
-     * (2^32) - 1
+     * Documentation reads: "(2^32) - 1", but in real it is (2^31) - 1
      */
-    public const MAX_DEC_DIGITS = 4294967295;
+    public const MAX_DEC_DIGITS = 2147483647;
 
     /**
      * Converts a value in internal geometry format to its WKT representation and returns the string result.

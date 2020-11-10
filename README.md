@@ -1,6 +1,6 @@
 Битрикс ORM инструменты
 =======================
-[![Travis Build Status](https://travis-ci.org/webarchitect609/bitrix-orm-tools.svg?branch=master)](https://travis-ci.org/webarchitect609/bitrix-orm-tools)
+[![Travis Build Status](https://travis-ci.com/webarchitect609/bitrix-orm-tools.svg?branch=master)](https://travis-ci.com/webarchitect609/bitrix-orm-tools)
 [![Latest version](https://img.shields.io/github/v/tag/webarchitect609/bitrix-orm-tools?sort=semver)](https://github.com/webarchitect609/bitrix-orm-tools/releases)
 [![Downloads](https://img.shields.io/packagist/dt/webarchitect609/bitrix-orm-tools)](https://packagist.org/packages/webarchitect609/bitrix-orm-tools)
 [![PHP version](https://img.shields.io/packagist/php-v/webarchitect609/bitrix-orm-tools)](https://www.php.net/supported-versions.php)
