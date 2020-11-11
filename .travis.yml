@@ -19,16 +19,15 @@ jobs:
         - export TRAVIS_PULL_REQUEST TRAVIS_COMMIT_RANGE
         - ./dev-tools/php-cs-check.sh
         - composer check:analyse
-# Sorry, Unit tests are pending!
-#    - &STANDART_UNIT_TEST_JOB
-#      <<: *STANDARD_TEST_JOB
-#      stage: "Unit tests"
-#      php: 7.2
-#      script:
-#        - composer check:test
-#    -
-#      <<: *STANDART_UNIT_TEST_JOB
-#      php: 7.3
-#    -
-#      <<: *STANDART_UNIT_TEST_JOB
-#      php: 7.4
+    - &STANDART_UNIT_TEST_JOB
+      <<: *STANDARD_TEST_JOB
+      stage: "Unit tests"
+      php: 7.2
+      script:
+        - composer check:test
+    -
+      <<: *STANDART_UNIT_TEST_JOB
+      php: 7.3
+    -
+      <<: *STANDART_UNIT_TEST_JOB
+      php: 7.4
