@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpMissingReturnTypeInspection */
+
 namespace WebArch\BitrixOrmTools\Iblock\Property;
 
 use Bitrix\Iblock\PropertyTable;

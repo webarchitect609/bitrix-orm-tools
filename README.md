@@ -36,7 +36,7 @@
     `getIblockId()`;
 - при объявлении `Bitrix\Main\Entity\ReferenceField` (или `Bitrix\Main\ORM\Fields\Relations\Reference`)
     воспользоваться созданным классом;
-    
+
 ```php
 use Bitrix\Iblock\ElementTable;
 use Bitrix\Main\Entity\ReferenceField;
