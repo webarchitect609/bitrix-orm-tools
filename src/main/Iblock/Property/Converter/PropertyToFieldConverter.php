@@ -4,6 +4,7 @@ namespace WebArch\BitrixOrmTools\Iblock\Property\Converter;
 
 use Bitrix\Main\ORM\Fields\Field;
 use Bitrix\Main\SystemException;
+use WebArch\BitrixOrmTools\Exception\InvalidArgumentException;
 
 abstract class PropertyToFieldConverter
 {
@@ -32,6 +33,22 @@ abstract class PropertyToFieldConverter
     abstract public function createField(array $propertyFields): Field;
 
     /**
+     * @param string               $fieldClass
+     * @param array<string, mixed> $propertyFields
+     *
+     * @return Field
+     */
+    protected function doCreateField(string $fieldClass, array $propertyFields): Field
+    {
+        $this->assertFieldClass($fieldClass);
+
+        return new $fieldClass(
+            trim($propertyFields['CODE']),
+            $this->getDefaultFieldParameters($propertyFields)
+        );
+    }
+
+    /**
      * @param array<string, mixed> $propertyFields
      *
      * @return array<string, mixed>
@@ -40,7 +57,7 @@ abstract class PropertyToFieldConverter
     {
         $parameters = [];
 
-        if (isset($propertyFields['NAME']) && trim($propertyFields['NAME']) != '') {
+        if (isset($propertyFields['NAME']) && trim($propertyFields['NAME']) !== '') {
             $parameters['title'] = trim($propertyFields['NAME']);
         }
 
@@ -49,5 +66,31 @@ abstract class PropertyToFieldConverter
         }
 
         return $parameters;
+    }
+
+    /**
+     * @param string $fieldClass
+     *
+     * @return void
+     */
+    private function assertFieldClass(string $fieldClass): void
+    {
+        if (!class_exists($fieldClass)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Class does not exist: %s',
+                    $fieldClass
+                )
+            );
+        }
+        if (!is_a($fieldClass, Field::class, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    '%s must be subclass of %s',
+                    $fieldClass,
+                    Field::class
+                )
+            );
+        }
     }
 }

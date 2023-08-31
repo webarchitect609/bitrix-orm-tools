@@ -28,9 +28,6 @@ class NumberConverter extends PropertyToFieldConverter
      */
     public function createField(array $propertyFields): Field
     {
-        return new FloatField(
-            trim($propertyFields['CODE']),
-            self::getDefaultFieldParameters($propertyFields)
-        );
+        return $this->doCreateField(FloatField::class, $propertyFields);
     }
 }

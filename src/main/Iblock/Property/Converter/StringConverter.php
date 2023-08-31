@@ -4,6 +4,7 @@ namespace WebArch\BitrixOrmTools\Iblock\Property\Converter;
 
 use Bitrix\Main\ORM\Fields\Field;
 use Bitrix\Main\ORM\Fields\TextField;
+use WebArch\BitrixIblockPropertyType\Abstraction\IblockPropertyTypeBase;
 
 class StringConverter extends PropertyToFieldConverter
 {
@@ -12,7 +13,7 @@ class StringConverter extends PropertyToFieldConverter
      */
     public function getPropertyType(): string
     {
-        return 'S';
+        return IblockPropertyTypeBase::PROPERTY_TYPE_STRING;
     }
 
     /**
@@ -28,9 +29,6 @@ class StringConverter extends PropertyToFieldConverter
      */
     public function createField(array $propertyFields): Field
     {
-        return new TextField(
-            trim($propertyFields['CODE']),
-            self::getDefaultFieldParameters($propertyFields)
-        );
+        return $this->doCreateField(TextField::class, $propertyFields);
     }
 }
