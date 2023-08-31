@@ -2,19 +2,19 @@
 
 namespace WebArch\BitrixOrmTools\Iblock\Property\Converter;
 
-use Bitrix\Main\ORM\Fields\BooleanField;
 use Bitrix\Main\ORM\Fields\Field;
+use Bitrix\Main\ORM\Fields\IntegerField;
+use Bitrix\Main\SystemException;
 use WebArch\BitrixIblockPropertyType\Abstraction\IblockPropertyTypeBase;
-use WebArch\BitrixIblockPropertyType\YesNoType;
 
-class YesNoTypeConverter extends PropertyToFieldConverter
+class ElementAutocompleteConverter extends PropertyToFieldConverter
 {
     /**
      * @inheritDoc
      */
     public function getPropertyType(): string
     {
-        return IblockPropertyTypeBase::PROPERTY_TYPE_NUMBER;
+        return IblockPropertyTypeBase::PROPERTY_TYPE_ELEMENT_LINK;
     }
 
     /**
@@ -22,7 +22,7 @@ class YesNoTypeConverter extends PropertyToFieldConverter
      */
     public function getUserType(): string
     {
-        return YesNoType::class;
+        return 'EAutocomplete';
     }
 
     /**
@@ -30,6 +30,6 @@ class YesNoTypeConverter extends PropertyToFieldConverter
      */
     public function createField(array $propertyFields): Field
     {
-        return $this->doCreateField(BooleanField::class, $propertyFields);
+        return $this->doCreateField(IntegerField::class, $propertyFields);
     }
 }

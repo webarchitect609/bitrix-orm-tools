@@ -4,6 +4,7 @@ namespace WebArch\BitrixOrmTools\Iblock\Property\Converter;
 
 use Bitrix\Main\ORM\Fields\Field;
 use Bitrix\Main\ORM\Fields\IntegerField;
+use WebArch\BitrixIblockPropertyType\Abstraction\IblockPropertyTypeBase;
 
 class SkuConverter extends PropertyToFieldConverter
 {
@@ -12,7 +13,7 @@ class SkuConverter extends PropertyToFieldConverter
      */
     public function getPropertyType(): string
     {
-        return 'E';
+        return IblockPropertyTypeBase::PROPERTY_TYPE_ELEMENT_LINK;
     }
 
     /**
@@ -28,9 +29,6 @@ class SkuConverter extends PropertyToFieldConverter
      */
     public function createField(array $propertyFields): Field
     {
-        return new IntegerField(
-            trim($propertyFields['CODE']),
-            self::getDefaultFieldParameters($propertyFields)
-        );
+        return $this->doCreateField(IntegerField::class, $propertyFields);
     }
 }
