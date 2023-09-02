@@ -16,6 +16,7 @@ use ReflectionException;
 use Symfony\Component\Finder\Finder;
 use WebArch\BitrixCache\Cache;
 use WebArch\BitrixOrmTools\Iblock\Property\Converter\PropertyToFieldConverter;
+use const PATHINFO_FILENAME;
 
 /**
  * Class DynamicSinglePropertiesTable
@@ -123,7 +124,7 @@ abstract class DynamicSinglePropertiesTable extends DataManager
         $namespace = __NAMESPACE__ . '\\' . $subdir . '\\';
         $result = [];
         foreach ($iterator as $file) {
-            $class = $namespace . $file->getFilenameWithoutExtension();
+            $class = $namespace . pathinfo($file->getFilename(), PATHINFO_FILENAME);
             // @phpstan-ignore-next-line
             if (is_subclass_of($class, PropertyToFieldConverter::class)) {
                 $result[] = new $class;
