@@ -12,13 +12,10 @@ use Bitrix\Main\ORM\Fields\Field;
 use Bitrix\Main\ORM\Fields\IntegerField;
 use Bitrix\Main\SystemException;
 use LogicException;
+use ReflectionException;
+use Symfony\Component\Finder\Finder;
 use WebArch\BitrixCache\Cache;
-use WebArch\BitrixOrmTools\Iblock\Property\Converter\DirectoryConverter;
-use WebArch\BitrixOrmTools\Iblock\Property\Converter\NumberConverter;
 use WebArch\BitrixOrmTools\Iblock\Property\Converter\PropertyToFieldConverter;
-use WebArch\BitrixOrmTools\Iblock\Property\Converter\SkuConverter;
-use WebArch\BitrixOrmTools\Iblock\Property\Converter\StringConverter;
-use WebArch\BitrixOrmTools\Iblock\Property\Converter\YesNoTypeConverter;
 
 /**
  * Class DynamicSinglePropertiesTable
@@ -47,6 +44,7 @@ abstract class DynamicSinglePropertiesTable extends DataManager
 
     /**
      * @inheritDoc
+     * @noinspection ReturnTypeCanBeDeclaredInspection
      */
     public static function getTableName()
     {
@@ -55,7 +53,9 @@ abstract class DynamicSinglePropertiesTable extends DataManager
 
     /**
      * @inheritDoc
+     * @throws ReflectionException
      * @return array<string, Field>
+     * @noinspection ReturnTypeCanBeDeclaredInspection
      */
     public static function getMap()
     {
@@ -114,13 +114,23 @@ abstract class DynamicSinglePropertiesTable extends DataManager
      */
     protected static function getConverterList(): array
     {
-        return [
-            new SkuConverter(),
-            new DirectoryConverter(),
-            new NumberConverter(),
-            new StringConverter(),
-            new YesNoTypeConverter(),
-        ];
+        $subdir = 'Converter';
+        $iterator = Finder::create()
+                          ->name('*.php')
+                          ->in(__DIR__ . DIRECTORY_SEPARATOR . $subdir)
+                          ->files()
+                          ->getIterator();
+        $namespace = __NAMESPACE__ . '\\' . $subdir . '\\';
+        $result = [];
+        foreach ($iterator as $file) {
+            $class = $namespace . $file->getFilenameWithoutExtension();
+            // @phpstan-ignore-next-line
+            if (is_subclass_of($class, PropertyToFieldConverter::class)) {
+                $result[] = new $class;
+            }
+        }
+
+        return $result;
     }
 
     /**

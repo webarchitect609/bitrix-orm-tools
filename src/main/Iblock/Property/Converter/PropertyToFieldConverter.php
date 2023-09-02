@@ -83,7 +83,7 @@ abstract class PropertyToFieldConverter
                 )
             );
         }
-        if (!is_a($fieldClass, Field::class, true)) {
+        if (!is_subclass_of($fieldClass, Field::class)) {
             throw new InvalidArgumentException(
                 sprintf(
                     '%s must be subclass of %s',
