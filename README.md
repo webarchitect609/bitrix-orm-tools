@@ -79,6 +79,17 @@ Unsupported property type `S` with user type `Vendor\Package\NutritionValuePrope
 Другой вариант - включить игнорирование таких ошибок при помощи метода
 `\WebArch\BitrixOrmTools\Iblock\Property\DynamicSinglePropertiesTable::ignoreUnsupportedPropertyType()`
 
+### Ошибка "Class \WebArch\BitrixOrmTools\Field\TimeField not found"
+
+1. Обновить `webarchitect609/bitrix-user-type >= 0.9.0`
+2. Предпочтительнее заменить в клиентском коде `\WebArch\BitrixOrmTools\Field\TimeField` на
+   `\WebArch\BitrixUserPropertyType\Field\TimeField`. Временное решение: в `init.php` после подключения
+   `vendor/autoload.php` активировать скрипт установки алиаса
+   `vendor/webarchitect609/bitrix-user-type/src/inc/aliases.php`
+   ```php
+   require_once 'vendor/webarchitect609/bitrix-user-type/src/inc/aliases.php';
+   ```
+
 Лицензия и информация об авторе
 --------------------------------
 
